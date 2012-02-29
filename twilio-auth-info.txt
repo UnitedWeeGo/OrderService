@@ -1,0 +1,8 @@
+twilioaccountsid
+AC6ca7bc22d08b4120b17763a3216b67c7
+
+twilioauthtoken
+02804533b7ea5b158fff0f97cc675b3f
+
+twiliophonenumber
++14154948323
