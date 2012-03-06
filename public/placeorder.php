@@ -48,6 +48,14 @@ class PlaceOrder extends ReqBase
 		// populate the Order with each MenuItem
 		$menuItemsList = $orderNode->getElementsByTagName( "MenuItem" );
 		$menuItemsListLength = $menuItemsList->length;
+		
+		//if there are no menu items, automatically mark order as completed
+		if($menuItemsListLength <= 0)
+		{
+			$orderObj->orderCompletedTime = $orderObj->orderPlaced;
+			$orderObj->completed = 1;
+		}
+		
 		for ($a=0; $a<$menuItemsListLength; $a++)
 		{
 			$menuItemNode = $menuItemsList->item($a);
