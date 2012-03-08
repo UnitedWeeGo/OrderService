@@ -1,0 +1,51 @@
+<html>
+	<head>
+		<script type="text/javascript" src="js/jquery-latest.js"></script> 
+		<script type="text/javascript">
+			var testcurl = "http://theideaserver.com/sxsw/public/testcurl.php";
+			
+			/*
+			Sean – 4042725440
+			Mike V - 4047831517
+			Hunter - 4044326704
+			Mike C - 6782187293
+			Derek -  4043683736
+			Colby - 4042190686
+			*/
+			
+			var numbers = ["14042190686","14043683736","16782187293","14044326704","14047831517","14042725440"];
+			var interval = 180000;
+			var intervalID;
+			
+			$(document).ready(function() 
+    			{ 
+        			intervalID = setInterval("sendMessage()", interval);
+    			}
+    		); 
+    		
+    		var messageNumber = 0;
+    		
+    		function sendMessage()
+    		{
+	    		
+    			var phoneNumber = numbers[messageNumber%(numbers.length)];
+    			messageNumber++;
+    		
+    			$.post("testcurl.php", {number: phoneNumber},function(data)
+    				{
+	    				$("#results-window").append("<p>Sent message "+messageNumber+" to :"+phoneNumber+"<br/>"+data+"</p>");
+	    				//if(messageNumber >= (60000/interval)*4) // 4 minutes at intervals
+	    				if(messageNumber >= (numbers.length*3))
+    						clearInterval(intervalID);
+    				}
+    			);
+    		}
+		</script>
+	</head>
+	<body>
+	
+	
+	<h1>Load Test</h1>
+	<div id="results-window"></div>
+	</body>
+</html>
